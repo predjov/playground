@@ -5,6 +5,12 @@ on:
     types: [created]
 
 jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ startsWith(github.event.comment.body, 'continue')}}
+          echo ${{ github.event.comment.body}}
   approved:
     if: startsWith(github.event.comment.body, 'continue')
     runs-on: ubuntu-latest
