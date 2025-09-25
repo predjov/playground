@@ -1,12 +1,12 @@
 name: test.yml
 
 on:
-  pull_request_review:
-    types: [submitted]
+  issue_comment:
+    types: [created]
 
 jobs:
   approved:
-    if: github.event.review.state == 'approved'
+    if: startsWith(github.event.comment.body, 'continue')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This PR was approved"
+      - run: echo "Resume with tests"
