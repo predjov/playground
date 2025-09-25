@@ -1,0 +1,26 @@
+name: workflow.yml
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "start"
+
+  envtest:
+    needs: start
+    environment: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "envtest"
+
+  end:
+    needs: envtest
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "end"
